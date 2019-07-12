@@ -58,3 +58,27 @@ int main() {
 
     return 0;
 }
+
+
+int goodSolution() {
+    int n, a[1000], d[1000][2];
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", a + i);
+        d[i][0] = d[i][1] = 1;
+    }
+    for (int i = 1; i < n; i++){
+        for (int j = 0; j < i; j++) {
+            if (a[i] > a[j])
+                d[i][0] = max(d[i][0], d[j][0] + 1);
+            if (a[i] < a[j])
+                // 나의 현재 최대 하강값, 비교수의 하강값과 나, 비교수의 증가값과 나
+                d[i][1] = max(d[i][1], max(d[j][0] + 1, d[j][1] + 1));
+        }
+    }
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < 2; j++)
+            ans = max(ans, d[i][j]);
+    printf("%d", ans);
+}
