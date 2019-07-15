@@ -28,7 +28,6 @@ int main() {
         scanf("%d", &a[i]);
     }
 
-
     for(int i = 0; i < n; i++){
         if(dpSize == 0){
             dp[dpSize++] = a[i];
@@ -41,7 +40,6 @@ int main() {
     }
 
     printf("%d", dpSize);
-
 
     return 0;
 }
