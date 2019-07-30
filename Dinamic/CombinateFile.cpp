@@ -21,7 +21,7 @@ int main() {
             for (int base = 1; base + weight <= fileNumber; ++base) {
                 end = base+weight;
                 dp[base][end] = INT_MAX;
-                // 범위 내에서 구간을 2분할 수 있는 모든 경우의 값을 구하여 나온 최솟값 저장
+                // 범위 내에서 구간을 2분할 수 있는 :모든 경우의 값을 구하여 나온 최솟값 저장
                 for (int pivot = base; pivot < end; ++pivot) {
                     dp[base][end] = min(dp[base][end],
                                         dp[base][pivot] + dp[pivot+1][end] + (sum[end] - sum[base-1]));
