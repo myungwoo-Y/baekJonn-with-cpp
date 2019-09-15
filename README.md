@@ -1,3 +1,8 @@
-# baekJonn-with-cpp
+# Practice of competitive programming using c++
 
-백준 알고리즘 문제들을 단계별로 푼 C++ 리소스입니다.
+You can find solution about BOJ problem in each section of algorithms.
+
+All resources are free open source.
+
+## My Goal in Learning
+* Practice competitive programming and be good at coding test
