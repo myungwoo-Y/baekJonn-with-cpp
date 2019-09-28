@@ -41,12 +41,10 @@ void merge(int start, int mid, int end){
     }
 
     while (left <= mid){
-        aux[inPoint++] = arr[left++];
+        aux[inPoint++] = arr[lnneft++];
     }
 
     copy(begin(aux) + start, begin(aux) + end + 1, begin(arr) + start);
-
-
 }
 
 void mergeSort(int start, int end){
