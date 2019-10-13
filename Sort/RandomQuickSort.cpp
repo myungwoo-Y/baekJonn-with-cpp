@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 
@@ -10,7 +11,8 @@ void swapElement(int firstIndex, int secondIndex, int arr[]){
 
 
 void quickSort(int left, int right, int arr[]){
-    int pivotIndex = (left + right) / 2;
+    srand(time(NULL));
+    int pivotIndex = rand() % (right - left + 1) + left;
     int pivot = arr[pivotIndex];
     int start = left;
     int end = right;
@@ -32,6 +34,8 @@ void quickSort(int left, int right, int arr[]){
 }
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     int arr[10000];
     int size = 0;
     cin >> size;
