@@ -9,6 +9,7 @@ void swapElement(int firstIndex, int secondIndex, int arr[]){
 }
 
 
+
 void quickSort(int left, int right, int arr[]){
     int pivotIndex = (left + right) / 2;
     int pivot = arr[pivotIndex];
