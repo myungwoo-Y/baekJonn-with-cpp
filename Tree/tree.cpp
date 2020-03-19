@@ -8,25 +8,6 @@ int main(void) {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n {0}, deleteNode {0}, root {0};
-
-    cin >> n;
-
-    vector<int> parents(n);
-
-    vector<bool> isLeaf(n, true);
-    vector<int> leafCounts(n);
-
-    for (int i = 0; i < n; ++i) {
-        cin >> parents[i];
-
-        if(parents[i] >= 0){
-            isLeaf[parents[i]] = false;
-        }else if(parents[i] == -1){
-            root = i;
-        }
-    }
-
     cin >> deleteNode;
 
     int node {0}, child {0}, temp {0};
