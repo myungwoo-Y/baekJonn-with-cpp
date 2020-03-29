@@ -1,5 +1,3 @@
-// 알고스팟 와일드카드
-
 #include <bits/stdc++.h>
 
 #define VII vector<vector<int>>
@@ -20,43 +18,36 @@ const string endL {"\n"};
 
 int n {};
 
-bool match(SI base, SI str, SI bEnd, SI sEnd){
-    if(str == sEnd && base == bEnd){
-        return true;
-    }else if(str == sEnd || base == bEnd){
-        if(base != bEnd && *base == '*'){
-            return match(base+1, str, bEnd, sEnd);
-        }
-        return false;
+VII dp;
+
+string S, W;
+
+bool match(int w, int s){
+    int& ret = dp[w][s];
+    if(dp[w][s] != -1) return ret;
+    if(s < S.size() && w < W.size() &&
+       (W[w] == '?' || W[w] == S[s])){
+        return ret = match(w+1, s+1);
     }
-    if(*base == '*'){
-        if(base+1 == bEnd) return true;
-        string::iterator prev = str;
-        while(str != sEnd){
-            if(match(base+1, str, bEnd, sEnd)){
-                return true;
-            };
-            str++;
-        }
-        return false;
-    }else{
-        if(*base == '?'){
-            return match(base+1, str+1, bEnd, sEnd);
-        }else if(*base == *str){
-            return match(base+1, str+1, bEnd, sEnd);
-        }else{
-            return false;
-        }
+
+    if(w == W.size()){
+        return ret=(s==S.size());
     }
+
+    if(W[w] == '*'){
+        if(match(w+1, s) || (s <= S.size() && match(w, s+1)))
+            return ret = 1;
+    }
+    return dp[w][s] = 0;
 }
 
 int main(void) {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    #ifdef LOCAL
-        freopen("in.txt", "r", stdin);
-    #endif
+#ifdef LOCAL
+    freopen("in.txt", "r", stdin);
+#endif
 
 
     int testCase {};
@@ -72,7 +63,10 @@ int main(void) {
         }
         VS list;
         for (auto str : strs) {
-            if(match(base.begin(), str.begin(), base.end(), str.end())){
+            S = str;
+            W = base;
+            dp = VII(101, VI(101, -1));
+            if(match(0, 0)){
                 list.push_back(str);
             }
         }
