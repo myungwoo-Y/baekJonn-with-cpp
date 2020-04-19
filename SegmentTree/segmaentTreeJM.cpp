@@ -60,14 +60,17 @@ struct RMQ {
     int query(int left, int right, int node, int nodeLeft, int nodeRight){
         if(right < nodeLeft || left > nodeRight)
             return INT32_MAX;
-        if(left <= nodeLeft && right <= nodeRight)
+        if(left <= nodeLeft &&  nodeRight <= right)
             return rangeMin[node];
         int mid = (nodeLeft+nodeRight)/2;
         return min(query(left, right, node*2, nodeLeft, mid),
                    query(left, right, node*2+1, mid+1, nodeRight));
     }
-    int query(int left, int right){
-        return query(left, right, 1, 0, n-1);
+    int query(int left, int right) {
+        return query(left, right, 1, 0, n - 1);
+    }
+
+
 
 };
 
